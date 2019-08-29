@@ -138,10 +138,10 @@ char **argv;                   /* command line tokens */
        * output of rand() to get less predictability, since rand() is
        * often poorly implemented.
        */
-      __srandom(seed);
+      srand(seed);
       init_keys(keys, passwd);
       for (n = 0; n < RAND_HEAD_LEN - 2; n++) {
-        c = (__random() >> 7) & 0xff;
+        c = (rand() >> 7) & 0xff;
         header[n] = (uch)zencode(c, t, keys);
       }
 
@@ -156,18 +156,15 @@ char **argv;                   /* command line tokens */
 //      char *str = barray2hexstr(header, 10);
 //      printf("%d", );
 
-      printf("%s\n", barray2hexstr(keys[0], 32));
-      printf("%s\n", barray2hexstr(keys[1], 32));
-      printf("%s\n", barray2hexstr(keys[2], 32));
-
       if (compareArrays(header, zip_header, 10) == 1) {
         printf("%s\n", "Found!");
-        printf("%d\n", ti);
-        printf("%d\n", p);
-        printf("%d\n", seed);
-        printf("%s\n", barray2hexstr(keys[0], 32));
-        printf("%s\n", barray2hexstr(keys[1], 32));
-        printf("%s\n", barray2hexstr(keys[2], 32));
+        printf("ti: %d\n", ti);
+        printf("p: %d\n", p);
+        printf("seed: %d\n", seed);
+
+        printf("k1=%d\n", keys[0]);
+        printf("k2=%d\n", keys[1]);
+        printf("k3=%d\n", keys[2]);
       }
     }
   }
