@@ -33,7 +33,7 @@ endif ( NOT HAVE_LCHMOD )
 add_executable ( zip ${SRC_ZIP} )
 
 add_definitions( -DUSE_ZIPMAIN )
-add_executable ( hack ${SRC_ZIP} hack.c hex.c )
+add_executable ( hack ${SRC_ZIP} hack.c )
 
 install_executable ( zip  )
 install_data ( README LICENSE )
